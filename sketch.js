@@ -1,6 +1,8 @@
 let typingMenu = false;
 let t = "";
 
+let noNoWords = ["damn","fuck","shit","bitch","ass"] // Had to add this because my friend cant control his potty mouth
+
 let btnUp = 0;
 let canClick = true;
 
@@ -41,6 +43,7 @@ function draw() {
   drawIdea();
   drawSendBtn();
   drawExitBtn();
+  addFilter()
 }
 
 function drawLogo() {
@@ -106,6 +109,14 @@ function mousePressed() {
     exitUp += 6;
     canClick = true;
     t = "";
+  }
+}
+
+function addFilter() {
+  for (let i = 0; i < noNoWords.length; i++) {
+    if (t.toLowerCase().includes(noNoWords[i].toLowerCase())) {
+      t = t.replace(new RegExp(noNoWords[i], "gi"), "");
+    }
   }
 }
 
