@@ -1,6 +1,5 @@
 let typingMenu = false;
 let t = "";
-let noNoWords = ["Fuck", "Shit", "Bastard", "Bitch", "Nigger", "Nigga"];
 
 let btnUp = 0;
 let canClick = true;
@@ -156,3 +155,4 @@ function keyPressed() {
     }
   }
 }
+
