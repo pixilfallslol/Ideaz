@@ -14,6 +14,8 @@ let IDEA_ROW_LIM = 8;
 let MARGIN = 110;
 let ideaTitle;
 
+let titleFloat = 0;
+
 let windowWidth = 1920;
 let windowHeight = 1080;
 
@@ -43,8 +45,9 @@ function draw() {
 }
 
 function drawLogo() {
-  image(icoImg, 0, 50, 100, 100);
-  textSize(48);
+  titleFloat = sin(frameCount * 0.05) * 6;
+  image(icoImg, 0, 50, titleFloat + 100, titleFloat + 100);
+  textSize(titleFloat + 48);
   strokeWeight(6);
   stroke(5);
   fill(255);
