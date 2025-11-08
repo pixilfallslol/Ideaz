@@ -8,3 +8,15 @@ canvas {
   top: 50%;
   transform: translate(25%, 5%);
 }
+
+hi {
+  outline: none;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* prevents scrollbars */
+  background: black; /* optional, matches your canvas */
+}

@@ -1,7 +1,8 @@
 let typingMenu = false;
 let t = "";
+let TEXT_LIM = 53;
 
-let noNoWords = ["damn","fuck","shit","bitch","ass"] // Had to add this because my friend cant control his potty mouth
+let noNoWords = ["damn", "fuck", "shit", "bitch", "ass"]; // Had to add this because my friend cant control his potty mouth
 
 let btnUp = 0;
 let canClick = true;
@@ -43,7 +44,7 @@ function draw() {
   drawIdea();
   drawSendBtn();
   drawExitBtn();
-  addFilter()
+  addFilter();
 }
 
 function drawLogo() {
@@ -167,6 +168,8 @@ function keyPressed() {
         t = t.substring(0, t.length - 1);
       }
     }
+    if (keyCode === " ") {
+      return false;
+    }
   }
 }
-
