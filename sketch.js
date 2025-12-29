@@ -91,35 +91,8 @@ function drawExitBtn() {
 
 function mousePressed() {
   if (dist(mouseX, mouseY, 1780, 50) < 100 && canClick === true) {
-    print("clicked");
-    btnUp += 6;
-    ideaCount += 1;
-    print(ideaCount);
-    canClick = false;
-    typingMenu = true;
+    toPage("type");
   }
-  if (dist(mouseX, mouseY, windowWidth / 2, 180) < 50 && typingMenu === true) {
-    sendMail();
-    sendUp += 6;
-  }
-  if (
-    dist(mouseX, mouseY, windowHeight + 80, 120) < 100 &&
-    typingMenu === true
-  ) {
-    typingMenu = false;
-    exitUp += 6;
-    canClick = true;
-    t = "";
-  }
-}
-
-function addFilter() {
-  for (let i = 0; i < noNoWords.length; i++) {
-    if (t.toLowerCase().includes(noNoWords[i].toLowerCase())) {
-      t = t.replace(new RegExp(noNoWords[i], "gi"), "");
-    }
-  }
-}
 
 function drawIdea() {
   for (let i = 0; i < ideaCount; i++) {
@@ -127,14 +100,6 @@ function drawIdea() {
     let x = 100 + (i % IDEA_ROW_LIM) * MARGIN;
     let y = 200 + Math.floor(i / IDEA_ROW_LIM) * Y_MARGIN;
     image(ideaIco, x, y, 100, 100);
-  }
-}
-
-function drawPaperBg() {
-  if (typingMenu) {
-    imageMode(CENTER);
-    image(paperBg, windowWidth / 2, windowHeight / 2);
-    imageMode(CORNER);
   }
 }
 
@@ -151,25 +116,6 @@ function sendMail(event) {
     .then(alert("SENT!"));
 }
 
-function keyTyped() {
-  if (typingMenu) {
-    t += key;
-    t = t.replace("Enter", "");
-  }
-}
-
-function keyPressed() {
-  if (typingMenu) {
-    if (keyCode === ENTER) {
-      t = t + "\n";
-    }
-    if (keyCode === BACKSPACE) {
-      if (t.length > 0) {
-        t = t.substring(0, t.length - 1);
-      }
-    }
-    if (keyCode === " ") {
-      return false;
-    }
-  }
+function toPage(page){
+  window.location.href = page+".html";
 }
