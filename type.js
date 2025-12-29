@@ -11,8 +11,8 @@ let sendUp = 0;
 
 let exitUp = 0;
 
-let W_W = 1920;
-let W_H = 1080;
+let W_W = 1280;
+let W_H = 720;
 
 function preload() {
   ideaIco = loadImage("https://i.imgur.com/Rsn7YFg.png");
@@ -48,43 +48,41 @@ function drawTypedText() {
     textWrap(CHAR);
     textSize(23);
     fill(0);
-    text(t, 50, 50, 1000);
+    text(t, W_W/2, 50, 1000);
   }
-}
-
-function drawNewIdeaBtn() {
-  btnUp *= 0.9;
-  rectMode(CENTER);
-  image(plus, 1780, 50, btnUp + 100, btnUp + 100);
 }
 
 function drawSendBtn() {
   sendUp *= 0.9;
   if (typingMenu) {
+    rectMode(CENTER);
     fill(0, 255, 0);
-    rect(windowWidth / 2, 180, 160 + sendUp, 80 + sendUp);
+    rect(W_W-70, 200, 160 + sendUp, 80 + sendUp);
     fill(255);
     textSize(48 + sendUp);
-    text("send", windowWidth / 2 - 50, 200);
+    text("send", W_W-70, 210);
   }
 }
 
 function drawExitBtn() {
   exitUp *= 0.9;
   if (typingMenu) {
-    image(exit, windowHeight + 80, 120, 100 + exitUp, 100 + exitUp);
+    image(exit, W_W-100, 50, 100 + exitUp, 100 + exitUp);
   }
 }
 
 function mousePressed() {
-  if (dist(mouseX, mouseY, windowWidth / 2, 180) < 50 && typingMenu === true) {
+  if (dist(mouseX, mouseY, W_W-70, 200) < 50 && typingMenu) {
     sendMail();
     sendUp += 6;
-  }
-  if (dist(mouseX, mouseY, windowHeight + 80, 120) < 100 && typingMenu === true) {
     setTimeout(() => {
       toPage("index");
-    },5000);
+    },1000);
+  }
+  if (dist(mouseX, mouseY, W_W-100, 50) < 100 && typingMenu) {
+    setTimeout(() => {
+      toPage("index");
+    },1000);
   }
 }
 
