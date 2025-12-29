@@ -28,7 +28,6 @@ function setup() {
 
 function draw() {
   background(255);
-  drawPaperBg();
   drawTypedText();
   drawSendBtn();
   drawExitBtn();
@@ -44,9 +43,12 @@ function resetText(){
 
 function drawTypedText() {
   if (typingMenu === true) {
+    textAlign(CENTER);
+    textWrap(WORD);
+    textWrap(CHAR);
     textSize(23);
-    fill(255);
-    text(t, 720, 265);
+    fill(0);
+    text(t, 50, 50, 1000);
   }
 }
 
@@ -74,17 +76,15 @@ function drawExitBtn() {
   }
 }
 
-function mousePressed(){
+function mousePressed() {
   if (dist(mouseX, mouseY, windowWidth / 2, 180) < 50 && typingMenu === true) {
     sendMail();
     sendUp += 6;
   }
   if (dist(mouseX, mouseY, windowHeight + 80, 120) < 100 && typingMenu === true) {
-    typingMenu = false;
-    exitUp += 6;
-    canClick = true;
-    t = "";
-    toPage("index")
+    setTimeout(() => {
+      toPage("index");
+    },5000);
   }
 }
 
@@ -93,14 +93,6 @@ function addFilter() {
     if (t.toLowerCase().includes(noNoWords[i].toLowerCase())) {
       t = t.replace(new RegExp(noNoWords[i], "gi"), "");
     }
-  }
-}
-
-function drawPaperBg() {
-  if (typingMenu) {
-    imageMode(CENTER);
-    image(paperBg, windowWidth / 2, windowHeight / 2);
-    imageMode(CORNER);
   }
 }
 

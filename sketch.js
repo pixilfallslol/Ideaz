@@ -18,8 +18,8 @@ let ideaTitle;
 
 let titleFloat = 0;
 
-let windowWidth = 1920;
-let windowHeight = 1080;
+let windowWidth = 1280;
+let windowHeight = 720;
 
 function preload() {
   icoImg = loadImage("https://i.imgur.com/qutv04r.png");
@@ -36,15 +36,8 @@ function setup() {
 
 function draw() {
   background(255);
-
-  drawPaperBg();
-  drawTypedText();
   drawLogo();
   drawNewIdeaBtn();
-  drawIdea();
-  drawSendBtn();
-  drawExitBtn();
-  addFilter();
 }
 
 function drawLogo() {
@@ -57,42 +50,17 @@ function drawLogo() {
   text("IDEAZ", 100, 120);
 }
 
-function drawTypedText() {
-  if (typingMenu === true) {
-    textSize(23);
-    fill(255);
-    text(t, 720, 265);
-  }
-}
-
 function drawNewIdeaBtn() {
   btnUp *= 0.9;
   rectMode(CENTER);
-  image(plus, 1780, 50, btnUp + 100, btnUp + 100);
-}
-
-function drawSendBtn() {
-  sendUp *= 0.9;
-  if (typingMenu) {
-    fill(0, 255, 0);
-    rect(windowWidth / 2, 180, 160 + sendUp, 80 + sendUp);
-    fill(255);
-    textSize(48 + sendUp);
-    text("send", windowWidth / 2 - 50, 200);
-  }
-}
-
-function drawExitBtn() {
-  exitUp *= 0.9;
-  if (typingMenu) {
-    image(exit, windowHeight + 80, 120, 100 + exitUp, 100 + exitUp);
-  }
+  image(plus, windowWidth-100, 50, btnUp + 100, btnUp + 100);
 }
 
 function mousePressed() {
-  if (dist(mouseX, mouseY, 1780, 50) < 100 && canClick === true) {
+  if (dist(mouseX, mouseY, windowWidth-100, 50) < 100 && canClick === true) {
     toPage("type");
   }
+}
 
 function drawIdea() {
   for (let i = 0; i < ideaCount; i++) {
@@ -101,19 +69,6 @@ function drawIdea() {
     let y = 200 + Math.floor(i / IDEA_ROW_LIM) * Y_MARGIN;
     image(ideaIco, x, y, 100, 100);
   }
-}
-
-function sendMail(event) {
-  let parms = {
-    title: "IDEA FROM IDEAZ!",
-    message: t,
-    name: "Ideaz User",
-    email: "no-reply@ideaz.com",
-  };
-
-  emailjs
-    .send("service_1d0x9v8", "template_0dpvd9j", parms)
-    .then(alert("SENT!"));
 }
 
 function toPage(page){
